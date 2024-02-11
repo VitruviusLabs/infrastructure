@@ -1,0 +1,1 @@
+traefik.{{COMPANY_NAME}}.dev

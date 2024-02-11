@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  traefik:
+    container_name: ${COMPANY_NAME}-traefik
+    restart: unless-stopped
+    image: ${COMPANY_NAME}/traefik
+    build:
+      context: ./
+      dockerfile: ./services/traefik/Dockerfile
+    networks:
+      - traefik_proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.dashboard.entrypoints=https
+      - traefik.http.routers.dashboard.rule=Host(`traefik.${COMPANY_NAME}.dev`)
+      - traefik.http.routers.dashboard.service=api@internal
+      - traefik.http.routers.dashboard.tls=true
+      - traefik.http.services.dashboard.loadbalancer.server.port=8080
+    ports:
+      - 80:80
+      - 443:443
+      - 5432:5432
+      - 8080:8080
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./services/traefik/traefik.toml:/etc/traefik/traefik.toml:ro"
+      - "./services/traefik/certificates:/etc/traefik/certificates:ro"
+
+networks:
+  traefik_proxy:
+    name: traefik_proxy

@@ -1,0 +1,24 @@
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+  [entryPoints.https]
+    address = ":443"
+  [entryPoints.postgresql]
+    address = ":5432"
+
+[providers]
+  [providers.docker]
+    exposedByDefault = false
+    network = "{{COMPANY_NAME}}.dev"
+  [providers.file]
+    directory = "/etc/traefik"
+    watch = true
+[api]
+  dashboard = true
+  insecure = true
+  debug = true
+[serversTransport]
+  insecureSkipVerify = true
+[tls.stores]
+  [tls.stores.default]
+  ## DOT NOT ADD ANYTHING NEW AFTER THIS COMMENT

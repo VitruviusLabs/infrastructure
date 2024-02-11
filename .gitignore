@@ -1,0 +1,9 @@
+*.key
+*.pem
+*.srl
+*.crt
+traefik.toml
+traefik.consolidate.toml
+domains.txt
+**/.env
+.DS_Store
