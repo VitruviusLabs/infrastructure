@@ -25,6 +25,18 @@ readonly DEVELOPMENT_DIRECTORY="$(realpath ${CURRENT_DIR}/..)"
 readonly DOCKER_DEVELOPMENT_DIRECTORY="$(realpath ${DEVELOPMENT_DIRECTORY}/docker)"
 readonly TRAEFIK_DIRECTORY="$(realpath ${DOCKER_DEVELOPMENT_DIRECTORY}/services/traefik)"
 
+# docker-compose.example.yml => docker-compose.yml
+
+if ! [[ -f "${DOCKER_DEVELOPMENT_DIRECTORY}/docker-compose.yml" ]]; then
+
+	log "${COLOR_YELLOW}File 'docker-compose.yml' missing.${COLOR_BLUE} Creating...${COLOR_NONE}"
+
+	cp "${DOCKER_DEVELOPMENT_DIRECTORY}/docker-compose.example.yml" "${DOCKER_DEVELOPMENT_DIRECTORY}/docker-compose.yml"
+
+	log "${COLOR_GREEN}File 'docker-compose.yml'created.${COLOR_NONE} You can now edit it to your needs."
+
+fi
+
 # example.env => .env
 
 if ! [[ -f "${DOCKER_DEVELOPMENT_DIRECTORY}/.env" ]]; then

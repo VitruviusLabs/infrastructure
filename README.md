@@ -195,7 +195,10 @@ The script that we are going to run next is located here: `development/scripts/i
 
 This script will create many files.
 
-First, it will copy the `example.env` (`development/docker/example.env`) file as `.env` (`development/docker/.env`).
+First will copy the `docker-compose.example.yml` (`development/docker/docker-compose.example.yml`) file as  `docker-compose.yml` (`development/docker/docker-compose.yml`).
+This allows you to customise the content of this file without having it tracked by `Git`.
+
+Then, it will copy the `example.env` (`development/docker/example.env`) file as `.env` (`development/docker/.env`).
 This allows you to customise the content of this file without having it tracked by `Git`.
 
 It will then copy the `traefik.example.toml` (`development/docker/services/traefik/traefik.example.toml`) file as `traefik.toml` (`development/docker/services/traefik/traefik.toml`).
