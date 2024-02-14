@@ -7,3 +7,4 @@ traefik.consolidate.toml
 domains.txt
 **/.env
 .DS_Store
+docker-compose.yml

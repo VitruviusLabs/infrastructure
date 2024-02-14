@@ -3,8 +3,6 @@
     address = ":80"
   [entryPoints.https]
     address = ":443"
-  [entryPoints.postgresql]
-    address = ":5432"
 
 [providers]
   [providers.docker]
