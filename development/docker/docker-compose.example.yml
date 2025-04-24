@@ -23,6 +23,23 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./services/traefik/traefik.toml:/etc/traefik/traefik.toml:ro"
       - "./services/traefik/certificates:/etc/traefik/certificates:ro"
+  openapi_gui:
+    container_name: ${COMPANY_NAME}-openapi-gui
+    restart: unless-stopped
+    image: ${COMPANY_NAME}/openapi-gui
+    build:
+      context: ./
+      dockerfile: ./services/openapi_gui/Dockerfile
+    networks:
+      - traefik_proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.openapi.rule=Host(`openapi.${COMPANY_NAME}.dev`)
+      - traefik.http.routers.openapi.entrypoints=https
+      - traefik.http.routers.openapi.tls=true
+      - traefik.http.services.openapi.loadbalancer.server.port=3000
+    depends_on:
+    volumes:
 
 networks:
   traefik_proxy:

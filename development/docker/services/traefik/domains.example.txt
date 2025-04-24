@@ -1,1 +1,2 @@
 traefik.{{COMPANY_NAME}}.dev
+openapi.{{COMPANY_NAME}}.dev
