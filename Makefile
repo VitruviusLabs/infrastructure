@@ -13,4 +13,15 @@ development.docker.stop:
 
 development.docker.restart:
 	@bash ./development/docker/scripts/restart.sh ||:
-	
+
+initialise:
+	@bash ./development/scripts/initialise.sh ||:
+
+start:
+	@bash ./development/docker/scripts/up.sh ||:
+
+stop:
+	@bash ./development/docker/scripts/down.sh ||:
+
+restart:
+	@bash ./development/docker/scripts/restart.sh ||:
